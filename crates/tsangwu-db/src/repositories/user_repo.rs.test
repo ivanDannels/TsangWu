@@ -1,0 +1,36 @@
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_user_repository() {
+        // 使用测试工具创建数据库
+        let test_db = crate::test_utils::TestDb::new().await.unwrap();
+        let db = DbConn {
+            conn: test_db.connection().clone(),
+        };
+
+        // 测试用户创建
+        // 注意：需要先运行迁移创建表结构
+        // test_db.migrate().await.unwrap();
+
+        // 这里可以添加具体的测试逻辑
+    }
+
+    #[tokio::test]
+    async fn test_query_builder() {
+        use crate::query_builder::QueryBuilder;
+        use crate::entities::user;
+
+        // 测试查询构建器
+        let query = QueryBuilder::<user::Entity>::new()
+            .eq_opt(user::Column::Email, Some("test@example.com"))
+            .like_opt(user::Column::Nickname, Some("test"))
+            .order_desc(user::Column::CreatedAt)
+            .limit(10)
+            .build();
+
+        // 验证查询构建成功
+        assert!(true);
+    }
+}

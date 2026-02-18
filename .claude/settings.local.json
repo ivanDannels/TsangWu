@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /d/Projects/tswu log --oneline -10)",
+      "Bash(git -C D:/Projects/tswu log --oneline -10)",
+      "Bash(cargo check:*)",
+      "Bash(where:*)",
+      "Bash(cargo build --workspace)",
+      "Bash(cargo tree:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo:*)",
+      "Bash(rustc:*)"
+    ]
+  }
+}

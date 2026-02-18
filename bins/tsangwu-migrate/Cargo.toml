@@ -1,0 +1,19 @@
+[package]
+name = "tsangwu-migrate"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "tsangwu-migrate"
+path = "src/main.rs"
+
+[dependencies]
+tsangwu-config = { workspace = true }
+tsangwu-db = { workspace = true }
+sqlx = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap = { version = "4", features = ["derive"] }
+chrono = { workspace = true }

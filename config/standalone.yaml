@@ -1,0 +1,33 @@
+deploy_mode: standalone
+server:
+  host: "0.0.0.0"
+  port: 8080
+  grpc_port: 9090
+database:
+  type: postgres
+  url: "postgres://tsangwu:password@localhost:5432/tsangwu"
+  max_connections: 20
+cache:
+  type: redis
+  url: "redis://localhost:6379"
+storage:
+  type: s3
+  endpoint: "https://oss-cn-shanghai.aliyuncs.com"
+  bucket: "tsangwu-assets"
+  access_key: "${OSS_ACCESS_KEY}"
+  secret_key: "${OSS_SECRET_KEY}"
+  base_url: "https://tsangwu-assets.oss-cn-shanghai.aliyuncs.com"
+message_queue:
+  type: kafka
+  brokers:
+    - "localhost:9092"
+search:
+  type: elasticsearch
+  url: "http://localhost:9200"
+workflow:
+  type: embedded
+  persistence: postgres
+telemetry:
+  log_level: info
+  otlp_endpoint: "http://localhost:4317"
+  service_name: tsangwu-server

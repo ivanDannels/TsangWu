@@ -1,0 +1,9 @@
+[package]
+name = "tsangwu-app"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tsangwu-auth = { workspace = true }
+tsangwu-db = { workspace = true }
+tsangwu-pybridge = { workspace = true }

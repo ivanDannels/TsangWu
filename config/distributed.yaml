@@ -1,0 +1,36 @@
+deploy_mode: distributed
+server:
+  host: "0.0.0.0"
+  port: 8080
+  grpc_port: 9090
+database:
+  type: postgres
+  url: "${DATABASE_URL}"
+  max_connections: 50
+cache:
+  type: redis
+  url: "${REDIS_URL}"
+storage:
+  type: s3
+  endpoint: "${OSS_ENDPOINT}"
+  bucket: "${OSS_BUCKET}"
+  access_key: "${OSS_ACCESS_KEY}"
+  secret_key: "${OSS_SECRET_KEY}"
+  base_url: "${OSS_BASE_URL}"
+message_queue:
+  type: kafka
+  brokers:
+    - "${KAFKA_BROKER_1}"
+    - "${KAFKA_BROKER_2}"
+    - "${KAFKA_BROKER_3}"
+search:
+  type: elasticsearch
+  url: "${ES_URL}"
+workflow:
+  type: distributed
+  persistence: postgres
+  event_bus: kafka
+telemetry:
+  log_level: info
+  otlp_endpoint: "${OTLP_ENDPOINT}"
+  service_name: "${SERVICE_NAME}"

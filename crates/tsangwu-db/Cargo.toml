@@ -1,0 +1,23 @@
+[package]
+name = "tsangwu-db"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = ["postgres"]
+postgres = ["sqlx/postgres", "sea-orm/sqlx-postgres"]
+sqlite = ["sqlx/sqlite", "sea-orm/sqlx-sqlite"]
+
+[dependencies]
+tsangwu-common = { workspace = true }
+tsangwu-config = { workspace = true }
+sqlx = { workspace = true }
+sea-orm = { workspace = true, features = ["macros"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }
+mongodb = { workspace = true, optional = true }

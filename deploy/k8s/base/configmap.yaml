@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tsangwu-config
+data:
+  distributed.yaml: |
+    deploy_mode: distributed
+    server:
+      host: "0.0.0.0"
+      port: 8080
+      grpc_port: 9090
+    database:
+      type: postgres
+      url: "${TSANGWU_DATABASE_URL}"
+      max_connections: 50
+    cache:
+      type: redis
+      url: "${TSANGWU_REDIS_URL}"
+    storage:
+      type: s3
+      endpoint: "${TSANGWU_S3_ENDPOINT}"
+      bucket: "${TSANGWU_S3_BUCKET}"
+      access_key: "${TSANGWU_S3_ACCESS_KEY}"
+      secret_key: "${TSANGWU_S3_SECRET_KEY}"
+    message_queue:
+      type: kafka
+      brokers:
+        - "${TSANGWU_KAFKA_BROKERS}"
+    search:
+      type: elasticsearch
+      url: "${TSANGWU_ES_URL}"
+    workflow:
+      type: distributed
+      persistence: postgres
+      event_bus: kafka
+    telemetry:
+      log_level: info
+      otlp_endpoint: "${TSANGWU_OTLP_ENDPOINT}"
+      service_name: tsangwu-server

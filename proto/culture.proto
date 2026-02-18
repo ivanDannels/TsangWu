@@ -1,0 +1,75 @@
+syntax = "proto3";
+package tsangwu.culture;
+
+service CultureService {
+    rpc IdentifyCulturalElements (IdentifyRequest) returns (CulturalTagsResponse);
+    rpc ValidateContent (ValidateRequest) returns (ValidationResponse);
+    rpc MatchResources (MatchRequest) returns (MatchResponse);
+}
+
+message IdentifyRequest {
+    string text = 1;
+    repeated string image_urls = 2;
+}
+
+message CulturalTagsResponse {
+    string dynasty = 1;
+    repeated string styles = 2;
+    repeated CulturalElement elements = 3;
+    string narrative_type = 4;
+    repeated string color_palette = 5;
+    repeated string labels = 6;
+}
+
+message CulturalElement {
+    string category = 1;
+    string name = 2;
+    string dynasty = 3;
+    float confidence = 4;
+}
+
+message ValidateRequest {
+    string dynasty = 1;
+    repeated string costumes = 2;
+    repeated string architectures = 3;
+    repeated string props = 4;
+    string content_json = 5;
+}
+
+message ValidationResponse {
+    bool passed = 1;
+    repeated ValidationIssue issues = 2;
+    repeated string suggestions = 3;
+}
+
+message ValidationIssue {
+    string rule_id = 1;
+    string category = 2;
+    string severity = 3;
+    string message = 4;
+    string suggestion = 5;
+}
+
+message MatchRequest {
+    repeated string cultural_labels = 1;
+    string dynasty = 2;
+    repeated string styles = 3;
+}
+
+message MatchResponse {
+    repeated MatchedAsset assets = 1;
+    repeated MatchedTemplate templates = 2;
+    string style_params_json = 3;
+}
+
+message MatchedAsset {
+    string asset_uid = 1;
+    string name = 2;
+    float score = 3;
+}
+
+message MatchedTemplate {
+    string template_id = 1;
+    string name = 2;
+    float score = 3;
+}

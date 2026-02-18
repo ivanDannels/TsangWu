@@ -1,0 +1,21 @@
+[package]
+name = "tsangwu-culture-svc"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tsangwu-common = { workspace = true }
+tsangwu-config = { workspace = true }
+tsangwu-db = { workspace = true }
+tsangwu-auth = { workspace = true }
+tsangwu-pybridge = { workspace = true }
+tsangwu-cache = { workspace = true }
+axum = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }

@@ -1,0 +1,43 @@
+syntax = "proto3";
+package tsangwu.asset;
+
+import "common.proto";
+
+service AssetService {
+    rpc GetAsset (GetAssetRequest) returns (AssetResponse);
+    rpc SearchAssets (SearchAssetsRequest) returns (SearchAssetsResponse);
+    rpc MatchAssets (MatchAssetsRequest) returns (SearchAssetsResponse);
+}
+
+message GetAssetRequest {
+    string asset_uid = 1;
+}
+
+message AssetResponse {
+    string asset_uid = 1;
+    string name = 2;
+    string category = 3;
+    string sub_category = 4;
+    repeated string tags = 5;
+    string dynasty = 6;
+    string thumbnail_url = 7;
+    string preview_url = 8;
+}
+
+message SearchAssetsRequest {
+    string query = 1;
+    string category = 2;
+    string dynasty = 3;
+    tsangwu.common.PageRequest page = 4;
+}
+
+message MatchAssetsRequest {
+    repeated string cultural_labels = 1;
+    string scene_type = 2;
+    int32 limit = 3;
+}
+
+message SearchAssetsResponse {
+    repeated AssetResponse assets = 1;
+    tsangwu.common.PageResponse page = 2;
+}

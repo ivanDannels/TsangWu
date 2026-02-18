@@ -1,0 +1,41 @@
+syntax = "proto3";
+package tsangwu.project;
+
+import "common.proto";
+
+service ProjectService {
+    rpc GetProject (GetProjectRequest) returns (ProjectResponse);
+    rpc ListProjects (ListProjectsRequest) returns (ListProjectsResponse);
+    rpc CreateProject (CreateProjectRequest) returns (ProjectResponse);
+}
+
+message GetProjectRequest {
+    string uid = 1;
+}
+
+message CreateProjectRequest {
+    string title = 1;
+    int32 scene_type = 2;
+    int32 user_mode = 3;
+    string config_json = 4;
+    string owner_uid = 5;
+}
+
+message ProjectResponse {
+    string uid = 1;
+    string title = 2;
+    int32 scene_type = 3;
+    int32 user_mode = 4;
+    int32 status = 5;
+    string config_json = 6;
+}
+
+message ListProjectsRequest {
+    string owner_uid = 1;
+    tsangwu.common.PageRequest page = 2;
+}
+
+message ListProjectsResponse {
+    repeated ProjectResponse projects = 1;
+    tsangwu.common.PageResponse page = 2;
+}

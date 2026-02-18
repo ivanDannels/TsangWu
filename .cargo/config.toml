@@ -1,0 +1,13 @@
+[build]
+# Use faster linker on supported platforms
+# Uncomment for Linux: rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+# Uncomment for macOS: rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld.exe"
+
+[env]
+SQLX_OFFLINE = "true"

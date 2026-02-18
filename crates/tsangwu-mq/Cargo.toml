@@ -1,0 +1,23 @@
+[package]
+name = "tsangwu-mq"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = ["in-memory"]
+kafka = ["rdkafka"]
+in-memory = []
+
+[dependencies]
+tsangwu-common = { workspace = true }
+tsangwu-config = { workspace = true }
+rdkafka = { workspace = true, optional = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+bytes = { workspace = true }
+futures = { workspace = true }

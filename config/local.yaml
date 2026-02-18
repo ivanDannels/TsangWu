@@ -1,0 +1,24 @@
+deploy_mode: local
+server:
+  host: "127.0.0.1"
+  port: 8080
+database:
+  type: sqlite
+  path: "./data/tsangwu.db"
+cache:
+  type: memory
+  max_capacity: 10000
+storage:
+  type: local_fs
+  root: "./data/storage"
+message_queue:
+  type: memory
+  channel_size: 1000
+search:
+  type: sqlite
+workflow:
+  type: embedded
+  persistence: sqlite
+telemetry:
+  log_level: debug
+  service_name: tsangwu-local

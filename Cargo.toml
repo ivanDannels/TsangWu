@@ -1,0 +1,127 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/tsangwu-common",
+    "crates/tsangwu-config",
+    "crates/tsangwu-db",
+    "crates/tsangwu-storage",
+    "crates/tsangwu-mq",
+    "crates/tsangwu-cache",
+    "crates/tsangwu-auth",
+    "crates/tsangwu-app",
+    "crates/tsangwu-workflow",
+    "crates/tsangwu-api-proto",
+    "crates/tsangwu-user-svc",
+    "crates/tsangwu-auth-svc",
+    "crates/tsangwu-project-svc",
+    "crates/tsangwu-asset-svc",
+    "crates/tsangwu-template-svc",
+    "crates/tsangwu-gen-svc",
+    "crates/tsangwu-agent-svc",
+    "crates/tsangwu-culture-svc",
+    "crates/tsangwu-copyright-svc",
+    "crates/tsangwu-audit-svc",
+    "crates/tsangwu-dist-svc",
+    "crates/tsangwu-pay-svc",
+    "crates/tsangwu-notif-svc",
+    "crates/tsangwu-gateway",
+    "crates/tsangwu-pybridge",
+    "bins/tsangwu-server",
+    "bins/tsangwu-local",
+    "bins/tsangwu-migrate",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "proprietary"
+repository = "https://git.tsangwu.com/tsangwu/tsangwu"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+# HTTP framework
+axum = { version = "0.8", features = ["macros", "ws"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "compression-gzip", "limit"] }
+# gRPC
+tonic = "0.12"
+tonic-build = "0.12"
+prost = "0.13"
+prost-types = "0.13"
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio", "tls-rustls", "postgres", "sqlite", "uuid", "chrono", "json"] }
+sea-orm = { version = "1.1", features = ["runtime-tokio-rustls", "macros"] }
+# Redis
+fred = { version = "9", features = ["subscriber-client"] }
+# MongoDB
+mongodb = { version = "3" }
+# Kafka
+rdkafka = { version = "0.37", features = ["tokio"] }
+# Object storage
+opendal = "0.51"
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Logging & tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-opentelemetry = "0.28"
+opentelemetry = "0.27"
+opentelemetry-otlp = "0.27"
+# Error handling
+thiserror = "2"
+anyhow = "1"
+# HTTP client
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+# Auth
+jsonwebtoken = "9"
+argon2 = "0.5"
+# Config
+config = "0.14"
+# Utils
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+async-trait = "0.1"
+futures = "0.3"
+bytes = "1"
+# In-memory cache
+moka = { version = "0.12", features = ["future"] }
+# Metrics
+metrics = "0.24"
+metrics-exporter-prometheus = "0.16"
+# Tokio utils
+tokio-stream = "0.1"
+# Internal crates
+tsangwu-common = { path = "crates/tsangwu-common" }
+tsangwu-config = { path = "crates/tsangwu-config" }
+tsangwu-db = { path = "crates/tsangwu-db" }
+tsangwu-storage = { path = "crates/tsangwu-storage" }
+tsangwu-mq = { path = "crates/tsangwu-mq" }
+tsangwu-cache = { path = "crates/tsangwu-cache" }
+tsangwu-auth = { path = "crates/tsangwu-auth" }
+tsangwu-app = { path = "crates/tsangwu-app" }
+tsangwu-workflow = { path = "crates/tsangwu-workflow" }
+tsangwu-api-proto = { path = "crates/tsangwu-api-proto" }
+tsangwu-user-svc = { path = "crates/tsangwu-user-svc" }
+tsangwu-auth-svc = { path = "crates/tsangwu-auth-svc" }
+tsangwu-project-svc = { path = "crates/tsangwu-project-svc" }
+tsangwu-asset-svc = { path = "crates/tsangwu-asset-svc" }
+tsangwu-template-svc = { path = "crates/tsangwu-template-svc" }
+tsangwu-gen-svc = { path = "crates/tsangwu-gen-svc" }
+tsangwu-agent-svc = { path = "crates/tsangwu-agent-svc" }
+tsangwu-culture-svc = { path = "crates/tsangwu-culture-svc" }
+tsangwu-copyright-svc = { path = "crates/tsangwu-copyright-svc" }
+tsangwu-audit-svc = { path = "crates/tsangwu-audit-svc" }
+tsangwu-dist-svc = { path = "crates/tsangwu-dist-svc" }
+tsangwu-pay-svc = { path = "crates/tsangwu-pay-svc" }
+tsangwu-notif-svc = { path = "crates/tsangwu-notif-svc" }
+tsangwu-gateway = { path = "crates/tsangwu-gateway" }
+tsangwu-pybridge = { path = "crates/tsangwu-pybridge" }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"

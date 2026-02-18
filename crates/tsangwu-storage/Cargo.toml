@@ -1,0 +1,18 @@
+[package]
+name = "tsangwu-storage"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = ["s3"]
+s3 = ["opendal/services-s3"]
+local-fs = ["opendal/services-fs"]
+
+[dependencies]
+tsangwu-common = { workspace = true }
+tsangwu-config = { workspace = true }
+opendal = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+bytes = { workspace = true }

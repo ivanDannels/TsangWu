@@ -1,0 +1,20 @@
+[package]
+name = "tsangwu-cache"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = ["redis"]
+redis = ["fred"]
+in-memory = ["moka"]
+
+[dependencies]
+tsangwu-common = { workspace = true }
+tsangwu-config = { workspace = true }
+fred = { workspace = true, optional = true }
+moka = { workspace = true, optional = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+bytes = { workspace = true }

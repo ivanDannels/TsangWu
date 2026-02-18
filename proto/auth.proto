@@ -1,0 +1,28 @@
+syntax = "proto3";
+package tsangwu.auth;
+
+service AuthService {
+    rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
+    rpc CheckPermission (CheckPermissionRequest) returns (CheckPermissionResponse);
+}
+
+message VerifyTokenRequest {
+    string token = 1;
+}
+
+message VerifyTokenResponse {
+    bool valid = 1;
+    string user_uid = 2;
+    repeated string roles = 3;
+    string plan = 4;
+}
+
+message CheckPermissionRequest {
+    string user_uid = 1;
+    string resource = 2;
+    string action = 3;
+}
+
+message CheckPermissionResponse {
+    bool allowed = 1;
+}

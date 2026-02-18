@@ -1,0 +1,14 @@
+[package]
+name = "tsangwu-config"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tsangwu-common = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+config = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+tokio = { workspace = true }
