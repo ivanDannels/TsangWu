@@ -2,6 +2,7 @@ use anyhow::Result;
 use axum::Router;
 use std::sync::Arc;
 use tokio::net::TcpListener;
+use tower_http::services::{ServeDir, ServeFile};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 use tsangwu_app::AppState;
 use tsangwu_config::TsangwuConfig;
@@ -30,7 +31,7 @@ async fn main() -> Result<()> {
     ));
     let state = Arc::new(AppState::new(db, jwt));
 
-    // 组装路由
+    // 组装 API 路由
     let api = Router::new()
         .merge(tsangwu_user_svc::routes())
         .merge(tsangwu_auth_svc::routes())
@@ -46,16 +47,21 @@ async fn main() -> Result<()> {
         .merge(tsangwu_notif_svc::routes())
         .with_state(state.clone());
 
+    // 主应用路由
     let app = Router::new()
         .nest("/api", api)
-        .route("/", axum::routing::get(|| async {
-            "苍梧 TsangWu — 本地模式运行中"
-        }))
         .route("/healthz", axum::routing::get(|| async { "ok" }))
-        .route("/readyz", axum::routing::get(|| async { "ok" }));
+        .route("/readyz", axum::routing::get(|| async { "ok" }))
+        // 静态文件服务
+        .nest_service("/static", ServeDir::new("web/static"))
+        // 主页
+        .route("/", axum::routing::get(|| async { axum::response::Html::from(include_str!("../../../web/static/index.html")) }))
+        // 其他路径回退到 index.html (SPA 支持)
+        .fallback_service(ServeFile::new("web/static/index.html"));
 
     let addr = format!("{}:{}", config.server.host, config.server.port);
     tracing::info!(addr = %addr, "本地模式 HTTP 监听");
+    tracing::info!("访问 http://{} 查看界面", addr);
     let listener = TcpListener::bind(&addr).await?;
     axum::serve(listener, app).await?;
 

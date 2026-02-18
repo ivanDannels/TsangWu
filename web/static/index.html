@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苍梧 TsangWu - 以中国传统文化为内核的多模态影像生成平台</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">舞</span>
+                <span class="logo-text">苍梧 TsangWu</span>
+            </div>
+            <nav class="nav">
+                <a href="#features" class="nav-link">功能特性</a>
+                <a href="#culture" class="nav-link">文化引擎</a>
+                <a href="#agent" class="nav-link">智能体</a>
+                <a href="#api" class="nav-link">API</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">以中国传统文化为内核的<br>多模态全链路影像生成平台</h1>
+                <p class="hero-subtitle">图文 → 短剧 → 电影 → 电视剧，一站式创作体验</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="showCreateModal()">开始创作</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('features')">了解更多</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section features">
+            <div class="container">
+                <h2 class="section-title">核心功能</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 class="feature-title">图文生成</h3>
+                        <p class="feature-desc">基于国风审美的智能图文创作，支持古风服饰、中式场景、传统色彩体系</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎬</div>
+                        <h3 class="feature-title">短剧生成</h3>
+                        <p class="feature-desc">一键生成完整短剧，剧本、分镜、画面、配音全流程自动化</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <h3 class="feature-title">电影预演</h3>
+                        <p class="feature-desc">专业级影视预演生成，支持复杂运镜与光影控制</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📺</div>
+                        <h3 class="feature-title">电视剧创作</h3>
+                        <p class="feature-desc">长内容连续生成，角色一致性保障，剧情连贯性控制</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Engine Section -->
+        <section id="culture" class="section culture">
+            <div class="container">
+                <h2 class="section-title">文化引擎</h2>
+                <p class="section-desc">深度适配中式审美与叙事逻辑，确保传统文化元素的历史准确性</p>
+                <div class="culture-demo">
+                    <div class="culture-input">
+                        <h3>文化识别</h3>
+                        <textarea id="cultureInput" placeholder="输入文本内容，识别文化元素...&#10;例如：唐朝宫廷舞曲，杨贵妃霓裳羽衣舞"></textarea>
+                        <button class="btn btn-primary" onclick="identifyCulture()">识别文化元素</button>
+                    </div>
+                    <div class="culture-output">
+                        <h3>识别结果</h3>
+                        <div id="cultureResult" class="result-box">
+                            <p class="placeholder">点击"识别文化元素"查看结果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent Section -->
+        <section id="agent" class="section agent">
+            <div class="container">
+                <h2 class="section-title">智能体系统</h2>
+                <p class="section-desc">五大智能体协同工作，实现全链路自动化创作</p>
+                <div class="agent-grid">
+                    <div class="agent-card">
+                        <div class="agent-icon">📝</div>
+                        <h3>Script Agent</h3>
+                        <p>剧本创作智能体</p>
+                        <span class="agent-status online">在线</span>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🎞️</div>
+                        <h3>Storyboard Agent</h3>
+                        <p>分镜规划智能体</p>
+                        <span class="agent-status online">在线</span>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🖼️</div>
+                        <h3>Visual Agent</h3>
+                        <p>视觉生成智能体</p>
+                        <span class="agent-status online">在线</span>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🎵</div>
+                        <h3>Audio Agent</h3>
+                        <p>音频生成智能体</p>
+                        <span class="agent-status online">在线</span>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">✅</div>
+                        <h3>Quality Agent</h3>
+                        <p>质量评估智能体</p>
+                        <span class="agent-status online">在线</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Section -->
+        <section id="api" class="section api">
+            <div class="container">
+                <h2 class="section-title">API 接口</h2>
+                <p class="section-desc">RESTful API 接口，支持第三方集成</p>
+                <div class="api-list">
+                    <div class="api-item">
+                        <span class="api-method post">POST</span>
+                        <span class="api-path">/api/v1/culture/identify</span>
+                        <span class="api-desc">文化元素识别</span>
+                    </div>
+                    <div class="api-item">
+                        <span class="api-method post">POST</span>
+                        <span class="api-path">/api/v1/culture/validate</span>
+                        <span class="api-desc">文化内容验证</span>
+                    </div>
+                    <div class="api-item">
+                        <span class="api-method post">POST</span>
+                        <span class="api-path">/api/v1/culture/match</span>
+                        <span class="api-desc">资源匹配</span>
+                    </div>
+                    <div class="api-item">
+                        <span class="api-method get">GET</span>
+                        <span class="api-path">/healthz</span>
+                        <span class="api-desc">健康检查</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Status -->
+        <section class="section status">
+            <div class="container">
+                <h2 class="section-title">系统状态</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">API 服务</span>
+                        <span id="apiStatus" class="status-value">检测中...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">数据库</span>
+                        <span id="dbStatus" class="status-value">检测中...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">文化引擎</span>
+                        <span id="cultureStatus" class="status-value">检测中...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">版本</span>
+                        <span class="status-value">v0.1.0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 苍梧 TsangWu - 以中国传统文化为内核的多模态影像生成平台</p>
+        </div>
+    </footer>
+
+    <!-- Create Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="hideCreateModal()">&times;</span>
+            <h2>开始创作</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>创作类型</label>
+                    <select id="createType">
+                        <option value="image">图文生成</option>
+                        <option value="short">短剧生成</option>
+                        <option value="movie">电影预演</option>
+                        <option value="tv">电视剧创作</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>创作描述</label>
+                    <textarea id="createDesc" placeholder="描述您的创作需求...&#10;例如：唐朝宫廷，杨贵妃霓裳羽衣舞，华丽场景"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>朝代背景</label>
+                    <select id="dynastySelect">
+                        <option value="">自动识别</option>
+                        <option value="tang">唐朝</option>
+                        <option value="song">宋朝</option>
+                        <option value="ming">明朝</option>
+                        <option value="qing">清朝</option>
+                        <option value="han">汉朝</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="startCreation()">开始生成</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
